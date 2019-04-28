@@ -23,6 +23,14 @@ export default class Calculator extends React.Component {
     this.setState({ calcText: updatedText })
   }
 
+  reset() {
+    if (this.state.calcText !== "") {
+      this.setState({ calcText: "" })
+    } else {
+      this.setState({ currentValue: 0 })
+    }
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -30,8 +38,8 @@ export default class Calculator extends React.Component {
         <View style={styles.buttonContainer}>
           <View style={styles.row}>
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='AC'
+              buttonFunc={() => this.reset()}
+              buttonText={this.state.calcText ? 'C' : 'AC'}
             />
             <CalculatorButton
               buttonFunc={() => console.log("test")}
