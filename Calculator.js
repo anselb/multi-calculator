@@ -96,11 +96,22 @@ export default class Calculator extends React.Component {
 
     if (this.state.operator === "" || this.state.operator === "equal") {
       updatedNum /= 100
+      this.setState({ currentValue: updatedNum })
     } else {
       updatedNum = updatedNum * this.state.currentValue / 100
     }
 
     this.setState({ calcText: String(updatedNum) })
+  }
+
+  changeSign() {
+    let updatedNum = Number(this.state.calcText)
+    updatedNum *= -1
+    this.setState({ calcText: String(updatedNum) })
+
+    if (this.state.operator === "" || this.state.operator === "equal") {
+      this.setState({ currentValue: updatedNum })
+    }
   }
 
   render() {
@@ -114,7 +125,7 @@ export default class Calculator extends React.Component {
               buttonText={this.state.calcText ? 'C' : 'AC'}
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.changeSign()}
               buttonText='+/1'
             />
             <CalculatorButton
