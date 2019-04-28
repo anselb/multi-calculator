@@ -91,6 +91,18 @@ export default class Calculator extends React.Component {
     })
   }
 
+  percent() {
+    let updatedNum = Number(this.state.calcText)
+
+    if (this.state.operator === "" || this.state.operator === "equal") {
+      updatedNum /= 100
+    } else {
+      updatedNum = updatedNum * this.state.currentValue / 100
+    }
+
+    this.setState({ calcText: String(updatedNum) })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -106,7 +118,7 @@ export default class Calculator extends React.Component {
               buttonText='+/1'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.percent()}
               buttonText='%'
             />
             <CalculatorButton
