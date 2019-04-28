@@ -14,21 +14,65 @@ export default class Calculator extends React.Component {
 
     this.state = {
       currentValue: 0,
-      calcText: ""
+      calcText: "",
+      operator: "",
+      updateText: false
     }
   }
 
   numberPress(number) {
-    const updatedText = this.state.calcText += number
+    let updatedText
+
+    if (this.state.updateText === true) {
+      this.setState({ updateText: false })
+      updatedText = "" + number
+    } else {
+      updatedText = this.state.calcText + number
+    }
+
     this.setState({ calcText: updatedText })
   }
 
   reset() {
     if (this.state.calcText !== "") {
-      this.setState({ calcText: "" })
+      this.setState({ calcText: "", operator: "" })
     } else {
       this.setState({ currentValue: 0 })
     }
+  }
+
+  // TODO: Make sure calculator handles order of operations
+  // (5 + 5 * 5 = 30)
+  calculate(newOperator) {
+    const { currentValue, calcText } = this.state
+    let updatedNum
+
+    switch(this.state.operator) {
+      case "add":
+        updatedNum = currentValue + Number(calcText)
+        break
+      case "subtract":
+        updatedNum = currentValue - Number(calcText)
+        break
+      case "multiply":
+        updatedNum = currentValue * Number(calcText)
+        break
+      case "divide":
+        updatedNum = currentValue / Number(calcText)
+        break
+      case "equal":
+        updatedNum = currentValue
+        break
+      default:
+        updatedNum = currentValue + Number(calcText)
+    }
+
+    this.setState({
+      currentValue: updatedNum,
+      calcText: String(updatedNum),
+      operator: newOperator,
+      updateText: true
+    })
   }
 
   render() {
@@ -50,7 +94,7 @@ export default class Calculator extends React.Component {
               buttonText='%'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.calculate('divide')}
               buttonText='/'
             />
           </View>
@@ -69,7 +113,7 @@ export default class Calculator extends React.Component {
               buttonText='9'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.calculate('multiply')}
               buttonText='*'
             />
           </View>
@@ -88,7 +132,7 @@ export default class Calculator extends React.Component {
               buttonText='6'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.calculate('subtract')}
               buttonText='-'
             />
           </View>
@@ -107,7 +151,7 @@ export default class Calculator extends React.Component {
               buttonText='3'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.calculate('add')}
               buttonText='+'
             />
           </View>
@@ -126,7 +170,7 @@ export default class Calculator extends React.Component {
               buttonText='.'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.calculate('equal')}
               buttonText='='
             />
           </View>
