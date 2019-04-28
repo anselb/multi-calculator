@@ -23,10 +23,26 @@ export default class Calculator extends React.Component {
   numberPress(number) {
     let updatedText
 
+    // Check if new calculation is being made
+    if (this.state.operator === "equal") {
+      this.setState({
+        currentValue: 0,
+        calcText: "",
+        operator: "",
+        updateText: false
+      })
+    }
+
+    // Check if new number needs to be shown (after choosing operator)
     if (this.state.updateText === true) {
       this.setState({ updateText: false })
       updatedText = "" + number
     } else {
+      // Check if there is already a decimal
+      if (number === "." && this.state.calcText.indexOf(".") !== -1) {
+        return
+      }
+
       updatedText = this.state.calcText + number
     }
 
@@ -166,7 +182,7 @@ export default class Calculator extends React.Component {
               buttonText='0'
             />
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.numberPress('.')}
               buttonText='.'
             />
             <CalculatorButton
