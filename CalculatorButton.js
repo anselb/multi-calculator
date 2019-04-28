@@ -13,7 +13,7 @@ export default class CalculatorButton extends React.Component {
         onPress={this.props.buttonFunc}
         style={styles.button}
       >
-        <Text>{this.props.buttonText}</Text>
+        <Text style={styles.buttonText}>{this.props.buttonText}</Text>
       </TouchableOpacity>
     );
   }
@@ -22,9 +22,14 @@ export default class CalculatorButton extends React.Component {
 const styles = StyleSheet.create({
   button: {
     flex: 1,
+    justifyContent: 'center',
     backgroundColor: 'white',
     borderRadius: 2,
     borderWidth: 0.5,
     borderColor: 'blue',
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 40,
   }
 });

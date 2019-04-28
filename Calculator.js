@@ -12,8 +12,65 @@ export default class Calculator extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text style={styles.calcText}>1234567890</Text>
         <View style={styles.buttonContainer}>
+          <View style={styles.row}>
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='AC'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='+/1'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='%'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='/'
+            />
+          </View>
+
+          <View style={styles.row}>
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='7'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='8'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='9'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='*'
+            />
+          </View>
+
+          <View style={styles.row}>
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='4'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='5'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='6'
+            />
+            <CalculatorButton
+              buttonFunc={() => console.log("test")}
+              buttonText='-'
+            />
+          </View>
+
           <View style={styles.row}>
             <CalculatorButton
               buttonFunc={() => console.log("test")}
@@ -29,83 +86,26 @@ export default class Calculator extends React.Component {
             />
             <CalculatorButton
               buttonFunc={() => console.log("test")}
-              buttonText='3'
+              buttonText='+'
             />
           </View>
 
           <View style={styles.row}>
             <CalculatorButton
               buttonFunc={() => console.log("test")}
-              buttonText='4'
+              buttonText='<'
             />
             <CalculatorButton
               buttonFunc={() => console.log("test")}
-              buttonText='5'
+              buttonText='0'
             />
             <CalculatorButton
               buttonFunc={() => console.log("test")}
-              buttonText='6'
+              buttonText='.'
             />
             <CalculatorButton
               buttonFunc={() => console.log("test")}
-              buttonText='3'
-            />
-          </View>
-
-          <View style={styles.row}>
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='4'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='5'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='6'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='3'
-            />
-          </View>
-
-          <View style={styles.row}>
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='4'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='5'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='6'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='3'
-            />
-          </View>
-
-          <View style={styles.row}>
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='4'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='5'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='6'
-            />
-            <CalculatorButton
-              buttonFunc={() => console.log("test")}
-              buttonText='3'
+              buttonText='='
             />
           </View>
         </View>
@@ -121,8 +121,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
+  },
+  calcText: {
+    textAlign: 'right',
+    fontSize: 40,
   },
   buttonContainer: {
     flexDirection: 'column',
