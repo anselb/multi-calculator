@@ -1,15 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 
 import Calculator from './Calculator.js'
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <Calculator />
     );
   }
 }
+
+const TabNavigator = createBottomTabNavigator({
+  "Calculator 1": Calculator,
+  "Calculator 2": Calculator,
+  "Calculator 3": Calculator,
+  "Master Calculator": Calculator,
+})
 
 const styles = StyleSheet.create({
   container: {
@@ -19,3 +27,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default createAppContainer(TabNavigator)
