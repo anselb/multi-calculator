@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
+import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
 import Calculator from './Calculator.js'
 
@@ -12,12 +13,37 @@ class App extends React.Component {
   }
 }
 
-const TabNavigator = createBottomTabNavigator({
-  "Calculator 1": Calculator,
-  "Calculator 2": Calculator,
-  "Calculator 3": Calculator,
-  "Master Calculator": Calculator,
-})
+const TabNavigator = createBottomTabNavigator(
+  {
+    'Calculator 1': Calculator,
+    'Calculator 2': Calculator,
+    'Calculator 3': Calculator,
+    'Master Calculator': Calculator,
+  },
+  {
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state
+        let iconName
+        switch(routeName) {
+          case 'Calculator 1':
+            iconName = 'calculator-variant'
+            break
+          case 'Calculator 2':
+            iconName = 'calculator-variant'
+            break
+          case 'Calculator 3':
+            iconName = 'calculator-variant'
+            break
+          case 'Master Calculator':
+            iconName = 'calculator'
+            break
+        }
+        return <MaterialCommunityIcons name={iconName} size={25} color={tintColor} />
+      }
+    })
+  }
+)
 
 const styles = StyleSheet.create({
   container: {
