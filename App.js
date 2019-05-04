@@ -5,20 +5,20 @@ import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
 import Calculator from './Calculator.js'
 
-class App extends React.Component {
-  render() {
-    return (
-      <Calculator />
-    );
-  }
-}
-
 const TabNavigator = createBottomTabNavigator(
   {
-    'Calculator 1': Calculator,
-    'Calculator 2': Calculator,
-    'Calculator 3': Calculator,
-    'Master Calculator': Calculator,
+    'Calculator 1': {
+      screen: Calculator
+    },
+    'Calculator 2': {
+      screen: Calculator
+    },
+    'Calculator 3': {
+      screen: Calculator
+    },
+    'Master Calculator': {
+      screen: Calculator
+    },
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
