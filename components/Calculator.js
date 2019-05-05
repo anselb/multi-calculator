@@ -5,10 +5,12 @@ import {
   Text,
   View
 } from 'react-native';
+import { connect } from 'react-redux'
 
 import CalculatorButton from './CalculatorButton'
+import { saveNumber } from '../actions'
 
-export default class Calculator extends React.Component {
+class CalculatorComponent extends React.Component {
   constructor(props) {
     super(props)
 
@@ -18,6 +20,14 @@ export default class Calculator extends React.Component {
       operator: "",
       updateText: false
     }
+  }
+
+  componentDidUpdate() {
+    const newNumber = Number(this.state.calcText)
+    const tabOrder = ['Calculator 1', 'Calculator 2', 'Calculator 3', 'Master Calculator']
+    const tabIndex = tabOrder.indexOf(this.props.navigation.state.key)
+
+    this.props.saveNumber(tabIndex, newNumber)
   }
 
   numberPress(number) {
@@ -242,3 +252,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
 });
+
+const mapStateToProps = (state) => {
+  return {
+    calc: state.calcs
+  }
+}
+
+const mapDispatchToProps = () => {
+  return {
+    saveNumber
+  }
+}
+
+const Calculator = connect(mapStateToProps, mapDispatchToProps())(CalculatorComponent);
+export default Calculator

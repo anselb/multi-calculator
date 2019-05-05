@@ -2,8 +2,22 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator, createAppContainer } from 'react-navigation'
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
 
-import Calculator from './Calculator.js'
+import Calculator from './components/Calculator.js'
+import reducers from './reducers'
+const store = createStore(reducers)
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <CalcApp />
+      </Provider>
+    );
+  }
+}
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -45,13 +59,4 @@ const TabNavigator = createBottomTabNavigator(
   }
 )
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default createAppContainer(TabNavigator)
+const CalcApp = createAppContainer(TabNavigator)
