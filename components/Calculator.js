@@ -1,13 +1,17 @@
 import React from 'react';
 import {
   Dimensions,
+  Modal,
   StyleSheet,
   Text,
+  TouchableHighlight,
   View
 } from 'react-native';
 import { connect } from 'react-redux'
+import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
 import CalculatorButton from './CalculatorButton'
+import CalculatorModal from './CalculatorModal'
 import { saveNumber } from '../actions'
 
 class CalculatorComponent extends React.Component {
@@ -18,12 +22,13 @@ class CalculatorComponent extends React.Component {
       currentValue: 0,
       calcText: "",
       operator: "",
-      updateText: false
+      updateText: false,
+      modalVisible: false
     }
   }
 
-  componentDidUpdate() {
-    const newNumber = Number(this.state.calcText)
+  saveNumber(calcText) {
+    const newNumber = Number(calcText)
     const tabOrder = ['Calculator 1', 'Calculator 2', 'Calculator 3', 'Master Calculator']
     const tabIndex = tabOrder.indexOf(this.props.navigation.state.key)
 
@@ -39,7 +44,8 @@ class CalculatorComponent extends React.Component {
         currentValue: 0,
         calcText: "",
         operator: "",
-        updateText: false
+        updateText: false,
+        modalVisible: false
       })
     }
 
@@ -57,6 +63,7 @@ class CalculatorComponent extends React.Component {
     }
 
     this.setState({ calcText: updatedText })
+    this.saveNumber(updatedText)
   }
 
   reset() {
@@ -99,6 +106,7 @@ class CalculatorComponent extends React.Component {
       operator: newOperator,
       updateText: true
     })
+    this.saveNumber(updatedNum)
   }
 
   percent() {
@@ -112,21 +120,34 @@ class CalculatorComponent extends React.Component {
     }
 
     this.setState({ calcText: String(updatedNum) })
+    this.saveNumber(updatedNum)
   }
 
   changeSign() {
     let updatedNum = Number(this.state.calcText)
     updatedNum *= -1
     this.setState({ calcText: String(updatedNum) })
+    this.saveNumber(updatedNum)
 
     if (this.state.operator === "" || this.state.operator === "equal") {
       this.setState({ currentValue: updatedNum })
     }
   }
 
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
   render() {
     return (
       <View style={styles.container}>
+
+        <CalculatorModal
+          hideModal={() => this.setModalVisible(false)}
+          isVisible={this.state.modalVisible}
+          calcNums={this.props.calcs}
+        />
+
         <Text style={styles.calcText}>{this.state.calcText}</Text>
         <View style={styles.buttonContainer}>
           <View style={styles.row}>
@@ -207,7 +228,7 @@ class CalculatorComponent extends React.Component {
 
           <View style={styles.row}>
             <CalculatorButton
-              buttonFunc={() => console.log("test")}
+              buttonFunc={() => this.setModalVisible(true)}
               buttonText='<'
             />
             <CalculatorButton
@@ -255,7 +276,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    calc: state.calcs
+    calcs: state.calc // [0,0,0,0]
   }
 }
 
