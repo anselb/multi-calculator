@@ -138,6 +138,10 @@ class CalculatorComponent extends React.Component {
     this.setState({ modalVisible: visible });
   }
 
+  setCalcText(number) {
+    this.setState({ calcText: String(number) })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -146,6 +150,7 @@ class CalculatorComponent extends React.Component {
           hideModal={() => this.setModalVisible(false)}
           isVisible={this.state.modalVisible}
           calcNums={this.props.calcs}
+          setCalcText={(num) => this.setCalcText(num)}
         />
 
         <Text style={styles.calcText}>{this.state.calcText}</Text>
