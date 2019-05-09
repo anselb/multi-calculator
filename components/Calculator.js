@@ -8,7 +8,6 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux'
-import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
 import CalculatorButton from './CalculatorButton'
 import CalculatorModal from './CalculatorModal'
@@ -234,7 +233,7 @@ class CalculatorComponent extends React.Component {
           <View style={styles.row}>
             <CalculatorButton
               buttonFunc={() => this.setModalVisible(true)}
-              buttonText='<'
+              buttonText='button'
             />
             <CalculatorButton
               buttonFunc={() => this.numberPress('0')}

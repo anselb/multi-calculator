@@ -34,17 +34,17 @@ export default class CalculatorButton extends React.Component {
           Alert.alert('Modal has been closed.');
         }}>
         <View style={styles.container}>
-            <Text style={styles.header}>Select a value to use in this calculator</Text>
+          <Text style={styles.header}>Select a value to use in this calculator</Text>
 
-            {this.renderCalcValues()}
+          {this.renderCalcValues()}
 
-            <TouchableHighlight
-              style={styles.button}
-              onPress={() => {
-                this.props.hideModal()
-              }}>
-              <Text>Hide Values</Text>
-            </TouchableHighlight>
+          <TouchableHighlight
+            style={styles.button}
+            onPress={() => {
+              this.props.hideModal()
+            }}>
+            <Text>Hide Values</Text>
+          </TouchableHighlight>
         </View>
       </Modal>
     );

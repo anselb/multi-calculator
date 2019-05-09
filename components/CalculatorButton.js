@@ -6,6 +6,8 @@ import {
   View
 } from 'react-native';
 
+import { MaterialCommunityIcons } from 'react-native-vector-icons'
+
 export default class CalculatorButton extends React.Component {
   render() {
     return (
@@ -13,7 +15,10 @@ export default class CalculatorButton extends React.Component {
         onPress={this.props.buttonFunc}
         style={styles.button}
       >
-        <Text style={styles.buttonText}>{this.props.buttonText}</Text>
+        { this.props.buttonText !== "button"
+          ? <Text style={styles.buttonText}>{this.props.buttonText}</Text>
+          : <MaterialCommunityIcons style={styles.buttonText} name={"numeric-4-box-multiple-outline"} />
+        }
       </TouchableOpacity>
     );
   }
