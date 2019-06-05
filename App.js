@@ -30,7 +30,7 @@ const TabNavigator = createBottomTabNavigator(
     'Calculator 3': {
       screen: Calculator
     },
-    'Master Calculator': {
+    'Calculator 4': {
       screen: Calculator
     },
   },
@@ -41,15 +41,15 @@ const TabNavigator = createBottomTabNavigator(
         let iconName
         switch(routeName) {
           case 'Calculator 1':
-            iconName = 'calculator-variant'
+            iconName = 'calculator'
             break
           case 'Calculator 2':
-            iconName = 'calculator-variant'
+            iconName = 'calculator'
             break
           case 'Calculator 3':
-            iconName = 'calculator-variant'
+            iconName = 'calculator'
             break
-          case 'Master Calculator':
+          case 'Calculator 4':
             iconName = 'calculator'
             break
         }
